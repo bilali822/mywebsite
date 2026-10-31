@@ -1,0 +1,35 @@
+[
+  {
+    "slug": "rag-docs-assistant",
+    "title": "RAG Docs Assistant",
+    "summary": "Production RAG pipeline answering questions over 40K internal docs with 92% answer accuracy.",
+    "stack": ["Python", "OpenAI", "pgvector", "FastAPI"],
+    "year": 2025,
+    "metrics": ["92% answer accuracy", "p95 latency 1.4s", "40K docs indexed"],
+    "problem": "Support team spent 6h/day searching internal documentation.",
+    "approach": "Chunked docs (512 tokens), embedded with text-embedding-3-small, stored in pgvector, re-ranked with Cohere, answered via GPT-4o with citation enforcement.",
+    "result": "Reduced support lookup time by 78%. Zero hallucination on citation-backed answers."
+  },
+  {
+    "slug": "ai-code-reviewer",
+    "title": "AI Code Reviewer",
+    "summary": "GitHub Action that reviews PRs using LLMs with repo-context retrieval.",
+    "stack": ["Python", "LangChain", "GitHub API", "Redis"],
+    "year": 2025,
+    "metrics": ["14K PRs reviewed", "31% faster merge time", "0 secrets leaked"],
+    "problem": "Small team drowning in PR review backlog.",
+    "approach": "Built context-aware reviewer: retrieves related code via AST + embeddings, then prompts Claude with diff + context. Rate-limited with Redis.",
+    "result": "Cut median PR review time from 26h to 18h; caught 3 critical bugs pre-merge."
+  },
+  {
+    "slug": "agent-workflow-builder",
+    "title": "Agent Workflow Builder",
+    "summary": "No-code builder for multi-agent workflows with visual debugging.",
+    "stack": ["Python", "LangGraph", "FastAPI", "React"],
+    "year": 2024,
+    "metrics": ["1.2K workflows created", "99.5% uptime", "3 LLM providers"],
+    "problem": "Non-engineers couldn't compose multi-step AI tasks.",
+    "approach": "DAG editor with LangGraph backend. Each node = tool or LLM call. Streaming execution trace in UI.",
+    "result": "Enabled ops team to automate 40+ internal workflows without engineering."
+  }
+]

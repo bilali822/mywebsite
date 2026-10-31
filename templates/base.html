@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="{{ lang }}" dir="{{ dir }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>{% if lang == 'ar' %}محمد بيلالي — باني منتجات مستقل{% else %}Mohamed Belali — Independent product builder{% endif %}</title>
+  <meta name="description" content="{{ t.hero_lede }}">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% if lang == 'ar' %}محمد بيلالي — باني منتجات مستقل{% else %}Mohamed Belali — Independent product builder{% endif %}">
+  <meta property="og:description" content="{{ t.hero_lede }}">
+  <meta property="og:url" content="https://mohamedbelali.pythonanywhere.com/">
+  <meta property="og:image" content="https://mohamedbelali.pythonanywhere.com/static/og-image.jpg">
+  <meta property="og:locale" content="{% if lang == 'ar' %}ar_LB{% else %}en_US{% endif %}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#F6F3EC">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mohamed Belali",
+    "url": "https://mohamedbelali.pythonanywhere.com/",
+    "jobTitle": "Independent Product Builder"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  {% if lang == 'ar' %}
+  <!-- Preload Arabic fonts to prevent layout shift -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+  {% else %}
+  <!-- Preload English fonts -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+  {% endif %}
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- Privacy-first Analytics (Replace with your actual domain if you set up Plausible) -->
+  <!-- <script defer data-domain="mohamedbelali.pythonanywhere.com" src="https://plausible.io/js/script.js"></script> -->
+</head>
+<body>
+  <a href="#main-content" class="skip-link">
+    {% if lang == 'ar' %}تخطي إلى المحتوى{% else %}Skip to content{% endif %}
+  </a>
+
+  {% block body %}{% endblock %}
+  
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

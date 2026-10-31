@@ -1,0 +1,21 @@
+[
+  {
+    "role": "AI Engineer",
+    "company": "Stealth AI Startup",
+    "period": "2024 — Present",
+    "highlights": [
+      "Shipped RAG product serving 5K daily active users",
+      "Reduced LLM cost 62% via caching + model routing",
+      "Built eval harness with 400 golden Q/A pairs"
+    ]
+  },
+  {
+    "role": "Full-Stack Developer",
+    "company": "Freelance",
+    "period": "2022 — 2024",
+    "highlights": [
+      "Delivered 12 AI-assisted web apps for SMBs",
+      "Built automation workflows saving clients ~20h/week"
+    ]
+  }
+]

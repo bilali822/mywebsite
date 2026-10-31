@@ -1,0 +1,458 @@
+:root {
+  --paper:    #F6F3EC;
+  --ink:      #1A1816;
+  --ink-2:    #57514A;
+  --rule:     #DDD6C6;
+  --accent:   #B14A2A;
+  --accent-2: #8F3A1F;
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans:  "Inter Tight", system-ui, sans-serif;
+  --font-mono:  "JetBrains Mono", monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+::selection { background: var(--accent); color: var(--paper); }
+a { color: inherit; text-decoration: none; }
+
+.wrap { max-width: 1440px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+@media (min-width: 768px) { .wrap { padding-left: 40px; padding-right: 40px; } }
+@media (min-width: 1024px) { .wrap { padding-left: 64px; padding-right: 64px; } }
+
+.nav-link { position: relative; display: inline-block; padding-bottom: 2px; }
+.nav-link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 1px; background: currentColor;
+  transform: scaleX(0); transform-origin: right center;
+  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link:hover::after, .nav-link:focus-visible::after {
+  transform: scaleX(1); transform-origin: left center;
+}
+
+.meta-label {
+  font-family: var(--font-mono); font-size: 13px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--ink-2);
+}
+
+/* Header */
+.site-header { border-bottom: 1px solid var(--rule); }
+.header-inner {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 24px; padding-top: 20px; padding-bottom: 20px;
+}
+@media (min-width: 768px) { .header-inner { padding-top: 24px; padding-bottom: 24px; } }
+.brand { font-family: var(--font-serif); font-size: 17px; letter-spacing: -0.01em; transition: color 200ms ease; }
+.brand:hover { color: var(--accent); }
+.nav { display: flex; gap: 24px; font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; }
+@media (min-width: 768px) { .nav { gap: 32px; } }
+
+/* Hero */
+.hero { padding: 80px 0 96px; }
+@media (min-width: 768px) { .hero { padding: 128px 0 160px; } }
+.hero .meta-label { margin-bottom: 32px; }
+@media (min-width: 768px) { .hero .meta-label { margin-bottom: 40px; } }
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 7vw, 6.25rem);
+  line-height: 0.95; letter-spacing: -0.035em;
+  max-width: 18ch; font-weight: 400;
+}
+.hero-lede { margin-top: 48px; display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 768px) {
+  .hero-lede { margin-top: 64px; grid-template-columns: repeat(12, 1fr); }
+  .hero-lede p { grid-column: 7 / span 5; }
+}
+.hero-lede p { font-size: 17px; line-height: 1.65; color: var(--ink-2); }
+.inline-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 56px; font-size: 15px;
+  border-bottom: 1px solid var(--ink); padding-bottom: 1px;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+.inline-link:hover { border-color: var(--accent); color: var(--accent); }
+.arrow { font-family: var(--font-mono); font-size: 13px; }
+
+/* Sections */
+.section { border-top: 1px solid var(--rule); padding: 80px 0; }
+@media (min-width: 768px) { .section { padding: 128px 0; } }
+
+.section-head { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 64px; }
+@media (min-width: 768px) {
+  .section-head { grid-template-columns: repeat(12, 1fr); margin-bottom: 80px; }
+  .section-head .section-title { grid-column: 1 / span 4; }
+  .section-head .section-lede  { grid-column: 8 / span 5; }
+}
+.section-title { font-family: var(--font-serif); font-size: clamp(2rem, 3.5vw, 2.75rem); line-height: 1.05; letter-spacing: -0.02em; font-weight: 400; }
+.section-lede { font-size: 15px; line-height: 1.65; color: var(--ink-2); }
+
+/* Projects */
+.project-list { list-style: none; }
+.project { border-top: 1px solid var(--rule); padding: 40px 0; display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 768px) {
+  .project { grid-template-columns: repeat(12, 1fr); gap: 24px; padding: 56px 0; }
+  .project-num  { grid-column: 1 / span 1; }
+  .project-body { grid-column: 2 / span 6; }
+  .project-meta { grid-column: 10 / span 3; text-align: right; }
+}
+.project-num { font-family: var(--font-mono); font-size: 13px; color: var(--ink-2); }
+.project-title { font-family: var(--font-serif); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.15; letter-spacing: -0.01em; font-weight: 400; }
+.project-desc  { margin-top: 16px; font-size: 16px; line-height: 1.65; color: var(--ink-2); max-width: 62ch; }
+.meta-small { margin-top: 8px; font-size: 14px; color: var(--ink-2); }
+.meta-ship  { margin-top: 8px; font-size: 14px; color: var(--accent); }
+.smaller-work { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--rule); font-size: 15px; line-height: 1.65; color: var(--ink-2); max-width: 62ch; }
+
+/* About & Experience */
+.about-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 768px) {
+  .about-grid { grid-template-columns: repeat(12, 1fr); }
+  .about-grid > .meta-label { grid-column: 1 / span 3; }
+  .about-body, .exp-list { grid-column: 5 / span 7; }
+}
+.about-body p { font-size: 17px; line-height: 1.7; }
+.about-body p + p { margin-top: 24px; }
+
+.exp-list { list-style: none; }
+.exp-item { display: grid; grid-template-columns: 1fr; gap: 8px; padding-bottom: 40px; }
+@media (min-width: 768px) { .exp-item { grid-template-columns: 2fr 6fr; gap: 16px; } }
+.exp-item + .exp-item { padding-top: 40px; border-top: 1px solid var(--rule); }
+.exp-years  { font-family: var(--font-mono); font-size: 13px; color: var(--ink-2); padding-top: 3px; }
+.exp-role   { font-size: 17px; line-height: 1.4; }
+.exp-detail { margin-top: 8px; font-size: 15px; line-height: 1.65; color: var(--ink-2); }
+
+/* Contact */
+.contact { padding: 96px 0; }
+@media (min-width: 768px) { .contact { padding: 160px 0; } }
+.contact .meta-label { margin-bottom: 40px; }
+@media (min-width: 768px) { .contact .meta-label { margin-bottom: 48px; } }
+.contact-email {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 5vw, 4rem);
+  line-height: 1.05; letter-spacing: -0.02em;
+  display: inline-block; border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  transition: border-color 200ms ease, color 200ms ease;
+  word-break: break-all;
+}
+.contact-email:hover { border-color: var(--accent); color: var(--accent); }
+.contact-lede { margin-top: 48px; font-size: 15px; line-height: 1.7; color: var(--ink-2); max-width: 62ch; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--rule); padding: 32px 0; }
+.footer-inner {
+  display: flex; flex-direction: column; gap: 16px;
+  font-family: var(--font-mono); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2);
+}
+@media (min-width: 768px) { .footer-inner { flex-direction: row; align-items: baseline; justify-content: space-between; } }
+.footer-links { display: flex; gap: 24px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================
+
+/* ============================================================
+   Arabic overrides — loaded conditionally via html[lang="ar"]
+   ============================================================ */
+
+html[lang="ar"] {
+  /* استبدال الخطوط: Cairo للعناوين، IBM Plex Sans Arabic للنصوص */
+  --font-serif: 'Cairo', system-ui, sans-serif;
+  --font-sans:  'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+/* Arabic script needs more vertical breathing room */
+html[lang="ar"] body         { line-height: 1.8; }
+html[lang="ar"] .body,
+html[lang="ar"] .body-sm     { line-height: 1.85; }
+html[lang="ar"] .about-body p,
+html[lang="ar"] .contact-lede,
+html[lang="ar"] .project-desc,
+html[lang="ar"] .exp-detail,
+html[lang="ar"] .smaller-work,
+html[lang="ar"] .section-lede { line-height: 1.85; }
+
+/* Arabic doesn't use Latin letter-spacing */
+html[lang="ar"] .display,
+html[lang="ar"] .h2,
+html[lang="ar"] .h3,
+html[lang="ar"] .brand {
+  letter-spacing: 0;
+}
+
+/* الخطوط العربية بتحتاج line-height أكبر عشان الحروف ما تتداخلش */
+html[lang="ar"] .display { 
+  line-height: 1.4; 
+  font-size: clamp(2rem, 5.5vw, 4.5rem); /* صغرنا الحجم شوية عن الإنجليزي */
+  font-weight: 600; 
+}
+html[lang="ar"] .h2,
+html[lang="ar"] .h3      { line-height: 1.4; font-weight: 600; }
+
+/* Meta labels */
+html[lang="ar"] .meta-label { line-height: 1.6; letter-spacing: 0.05em; }
+
+/* RTL underline animation */
+[dir="rtl"] .nav-link::after { transform-origin: left center; }
+[dir="rtl"] .nav-link:hover::after,
+[dir="rtl"] .nav-link:focus-visible::after { transform-origin: right center; }
+
+/* Meta column alignment flips in RTL. */
+[dir="rtl"] .project-meta { text-align: left; }
+
+[dir="rtl"] .project-tech,
+[dir="rtl"] .contact-email { text-align: right; }
+
+/* ============================================================
+   Phase 1 Upgrades: Copy Button & Toast
+   ============================================================ */
+
+.contact-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+@media (min-width: 768px) {
+  .contact-wrapper { margin-top: 48px; }
+}
+
+.copy-btn {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  padding: 10px;
+  border-radius: 4px; /* Border radius صغير حسب الـ Design System */
+  cursor: pointer;
+  transition: all 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.copy-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.copy-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================================
+   Phase 2 Upgrades: Accessibility, Reveals, & Case Studies
+   ============================================================ */
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 24px;
+  z-index: 9999;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  transition: top 200ms ease;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Scroll Reveals */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Override for reduced motion (JS handles it, but this is fallback) */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Project Links */
+.project-link {
+  transition: color 200ms ease;
+}
+.project-link:hover {
+  color: var(--accent);
+}
+
+.case-study-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 200ms ease;
+}
+.case-study-link:hover {
+  border-color: var(--accent);
+}
+
+/* Case Study Page Layout */
+.case-study-content {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin-top: 40px;
+}
+@media (min-width: 768px) {
+  .case-study-content {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+}
+
+.case-block {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 40px;
+}
+@media (min-width: 768px) {
+  .case-block {
+    grid-column: 1 / -1; /* Full width by default */
+    display: grid;
+    grid-template-columns: subgrid;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 48px;
+  }
+  .case-block > .case-label {
+    grid-column: 1 / span 3;
+  }
+  .case-block > .case-text {
+    grid-column: 4 / span 8;
+  }
+}
+
+.case-label {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  color: var(--ink);
+}
+html[lang="ar"] .case-label {
+  font-family: var(--font-serif); /* Cairo */
+  line-height: 1.4;
+}
+
+.case-text {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+html[lang="ar"] .case-text {
+  line-height: 1.85;
+}
+
+/* ============================================================
+   Phase 3 Upgrades: Print Stylesheet
+   ============================================================ */
+
+@media print {
+  /* Reset colors to black on white for ink saving */
+  :root {
+    --paper: #FFFFFF;
+    --ink: #000000;
+    --ink-2: #333333;
+    --rule: #CCCCCC;
+    --accent: #000000;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Hide elements that don't belong in a printout */
+  .site-header, 
+  .site-footer, 
+  .copy-btn, 
+  .skip-link, 
+  .inline-link,
+  .case-study-link {
+    display: none !important;
+  }
+
+  /* Flatten the layout */
+  .wrap {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Ensure case studies print cleanly */
+  .case-study-content {
+    display: block;
+  }
+  .case-block {
+    page-break-inside: avoid;
+    margin-bottom: 24pt;
+    padding-bottom: 12pt;
+  }
+
+  /* Show the URL of the links when printed */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666;
+  }
+  
+  /* Prevent page breaks inside projects */
+  .project, .exp-item {
+    page-break-inside: avoid;
+  }
+}
